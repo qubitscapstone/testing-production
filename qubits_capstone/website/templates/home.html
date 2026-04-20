@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="body">
+   <div class="img"></div>
+   <div class="center">
+  <!-- https://learndjango.com/tutorials/django-login-and-logout-tutorial -->
+  {% if user.is_authenticated %}
+  <section class="hero">
+    <div class="section-content">
+      <div class="hero-details">
+        <h1> Welcome {{ user.username }}! </h1>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <div class="button">
+          <button type="submit">Log Out</button>
+        </div>
+      </form>
+      </div>
+   </div>
+    </div>
+    </div>
+    </section>
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-primary mt-3">
+      Log in
+    </a>
+  {% endif %}
+</div>
+{% endblock %}
